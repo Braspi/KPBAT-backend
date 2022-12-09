@@ -17,7 +17,6 @@ public class CreateUserRequest {
     private String email;
 
     @NotEmpty(message = "name field can't be null")
-    @Min(value = 4, message = "name min length is 4!")
     private String name;
 
     @NotNull(message = "role field can't be null")
