@@ -49,7 +49,6 @@ public class ImagesController {
         if(categoryId == null){
             List<Image> images = this.imageRepository.findAll();
             List<ImageResponse> response = new ArrayList<>();
-            images.forEach();
             return new ResponseEntity<>(this.imageRepository.findAll(), HttpStatus.OK);
         }
         return new ResponseEntity<>(categoryId, HttpStatus.OK);
