@@ -20,6 +20,7 @@ public class Message {
     @NotEmpty(message = "name field can't be null")
     private String name;
 
+    @NotEmpty(message = "email field can't be null!")
     @Email(message = "email format is invalid")
     private String email;
 
