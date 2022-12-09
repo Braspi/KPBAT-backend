@@ -35,6 +35,17 @@ public class MessagesController {
         return this.messageService.getPosts(page, Sort.Direction.ASC);
     }
 
+    @GetMapping("/admin/{id}")
+    public ResponseEntity<?> getAllMessages(@PathVariable Long id) {
+        Message message = this.messageRepository.findById(id).get();
+
+        if (message == null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "message with id " + id + " not found!");
+
+        return ResponseEntity.ok(message);
+    }
+
+
     @PutMapping("/admin/{id}")
     public ResponseEntity<?> replyMessage(@PathVariable Long id, @Valid @RequestBody MessageReplyRequest messageReplyRequest) {
         Message message = this.messageRepository.findById(id).get();
