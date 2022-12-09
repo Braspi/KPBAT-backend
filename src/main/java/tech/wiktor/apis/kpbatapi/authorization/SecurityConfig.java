@@ -61,7 +61,8 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/api/auth/login").permitAll()
                 .antMatchers("/api/auth/me").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/api/messages/admin/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/api/messages/send").permitAll()
+                .antMatchers("/api/messages/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/hello").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
                 .anyRequest().authenticated();

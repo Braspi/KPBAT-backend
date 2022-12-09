@@ -23,19 +23,19 @@ public class MessagesController {
     @Autowired private MailService mailService;
     @Autowired private MessageService messageService;
 
-    @PostMapping()
+    @PostMapping("/send")
     public ResponseEntity<?> sendMessage(@Valid @RequestBody Message message){
         message.setStatus(MessageStatusEnum.OPENED);
         this.messageRepository.save(message);
         return ResponseEntity.ok("");
     }
 
-    @GetMapping("/admin")
+    @GetMapping()
     public List<Message> getAllMessages(@RequestParam(required = false, defaultValue = "0") Integer page) {
         return this.messageService.getPosts(page, Sort.Direction.ASC);
     }
 
-    @GetMapping("/admin/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getAllMessages(@PathVariable Long id) {
         Message message = this.messageRepository.findById(id).get();
 
@@ -46,7 +46,7 @@ public class MessagesController {
     }
 
 
-    @PutMapping("/admin/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> replyMessage(@PathVariable Long id, @Valid @RequestBody MessageReplyRequest messageReplyRequest) {
         Message message = this.messageRepository.findById(id).get();
 
