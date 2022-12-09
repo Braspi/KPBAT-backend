@@ -9,7 +9,6 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 public class CreateCategoryRequest {
     @NotEmpty(message = "name field can't be null")
-    @Min(value = 4, message = "name min length is 4!")
     private String name;
 
     @NotEmpty(message = "description field can't be null")
